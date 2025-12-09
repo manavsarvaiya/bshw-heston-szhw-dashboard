@@ -128,18 +128,8 @@ dr(t) = λ (θ(t) - r(t)) dt + η dW₃(t)
 
 - CIR_Sample: Exact (noncentral chi-square) sampling for CIR variance, with Euler fallback.
 - GeneratePathsHestonHW_AES: "Almost exact" path simulation for (S, v, r) and money-market account $\( M_t = e^{\int_0^t r(s)\,ds} \)$
-
-
-EUOptionPriceFromMCPathsGeneralizedStochIR: Monte Carlo pricing using path-dependent discounting via 
-𝑀
-𝑇
-M
-T
-	​
-
-.
-
-run_analysis: Orchestrates path generation, pricing across strikes, and martingale checks.
+- EUOptionPriceFromMCPathsGeneralizedStochIR: Monte Carlo pricing using path-dependent discounting via $M_T$
+- run_analysis: Orchestrates path generation, pricing across strikes, and martingale checks.
 
 
 
