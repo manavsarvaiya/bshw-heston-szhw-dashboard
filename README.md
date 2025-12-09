@@ -180,58 +180,134 @@ The Streamlit page plots these curves for visual comparison.
 
 ### Step-by-Step
 
-#### 1. Install Dependencies
-    Run pip install streamlit numpy matplotlib scipy pandas.
+### 1. Install Dependencies
+  
+  Run `pip install streamlit numpy matplotlib scipy pandas.`
 
-Launch Dashboard
+### 2. Launch Dashboard
 
+```
 streamlit run app.py
+```
 
+### 3. Select Model
 
-Select Model
 Use the sidebar navigation:
+- Home
+- BSHW Model
+- Heston–HW Model
+- SZHW Model
+- Diversification Products
 
-Home
+### 4. Adjust Parameters
 
-BSHW Model
-
-Heston–HW Model
-
-SZHW Model
-
-Diversification Products
-
-Adjust Parameters
 Use sliders and numeric inputs for:
+- Spot price, maturities
+- Volatility parameters (σ, v₀, v̄, γ, κ)
+- Rate parameters (λ, η)
+- Correlation parameters (ρ, ρₓᵥ, ρₓʳ)
+- Monte Carlo settings (number of paths/steps)
+- Allocation ranges for diversification products
 
-Spot price, maturities
+### 5. Run Analysis
 
-Volatility parameters (σ, v₀, v̄, γ, κ)
-
-Rate parameters (λ, η)
-
-Correlation parameters (ρ, ρₓᵥ, ρₓʳ)
-
-Monte Carlo settings (number of paths/steps)
-
-Allocation ranges for diversification products
-
-Run Analysis
 Click the corresponding Run Analysis button for each model page.
 
-View Results
+### 6. View Results
+
 Inspect:
+- Option price vs strike plots
+- Effective volatility / IV curves
+- Martingale metrics
+- Sensitivity charts and diversification profiles
 
-Option price vs strike plots
+--------------------------------------------------------------
 
-Effective volatility / IV curves
+## Application Scenarios
 
-Martingale metrics
+### Use Cases
 
-Sensitivity charts and diversification profiles
+- Long-dated option pricing under stochastic interest rates
+- Hybrid derivative and structured product prototyping
+- Studying volatility smiles/skews in hybrid frameworks
+- Testing diversification strategies under different correlation regimes
+- Educational demonstrations of stochastic volatility + stochastic rates
 
+### Target Users
 
+- Quantitative Analysts & Quants
+- Risk Managers
+- Financial Engineers / Structurers
+- Researchers & Graduate Students in Quant Finance
 
+--------------------------------------------------------------
+
+## Technical Implementation
+
+### Numerical Methods
+
+### - Black–Scholes Analytics
+  Closed-form European option pricing and implied volatility inversion.
+
+### - CIR Exact Sampling
+  Use of noncentral chi-square distribution for variance paths, with safe fallbacks.
+
+### - Monte Carlo Simulation
+  - Heston–HW: joint simulation of (S, v, r, $M_t$)
+  - Path-wise discounting using $M_T$
+  - Strike-wise payoff aggregation for calls/puts
+
+### - Effective Volatility (BSHW)
+  Time integration of forward volatility to obtain a composite volatility per maturity.
+
+### - Sensitivity & Stylized IV Curves (SZHW)
+  Synthetic IV “smiles” to visualize parametric effects (γ, κ, ρ, σ̄).
+
+### Key Functions
+
+```
+# Base analytics
+BS_Call_Option_Price()
+ImpliedVolatilityBlack76()
+
+# BSHW
+BSHWVolatility()
+BSHWOptionPrice()
+run_analysis()  # per model
+
+# Heston–HW
+CIR_Sample()
+GeneratePathsHestonHW_AES()
+EUOptionPriceFromMCPathsGeneralizedStochIR()
+run_analysis()
+
+# SZHW
+run_sensitivity_analysis()
+
+# Diversification
+run_analysis()
+```
+
+--------------------------------------------------------------
+
+## Performance & Validation
+
+### Model Validation
+
+#### - Martingale Check (Heston–HW):
+ $ \( \mathbb{E}[S_T / M_T] \approx S_0 \)$ for risk-neutral correctness.
+
+#### - Basic error handling with fallbacks:
+  - CIR sampling fallback to Euler
+  - BSHW volatility fallback approximation
+  - Safe clipping of volatilities and variances
+
+#### - Computational Efficiency
+  - Vectorized NumPy operations for path and payoff calculations
+  - Adjustable path and step counts for speed/accuracy tradeoffs
+  - Lightweight visualizations with Matplotlib embedded in Streamlit
+
+--------------------------------------------------------------
 
 
 
