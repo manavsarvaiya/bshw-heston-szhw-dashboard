@@ -154,7 +154,81 @@ The Streamlit page plots these curves for visual comparison.
 
 --------------------------------------------------------------
 
+## Diversification Product Model
 
+### Stylized structured product model that illustrates diversification benefits under different stock–rate correlations:
+
+- Allocation parameter ω (e.g., equity vs fixed-income weight).
+- Correlation scenario:
+  - Rxr = 0.0: Low correlation baseline
+  - Rxr < 0: Diversification benefit (risks offset)
+  - Rxr > 0: Less diversification (risks reinforce)
+
+### The implementation:
+
+- `run_analysis(S0, T, T1, lambd, eta, omega_min, omega_max, omega_points, scenario_params)`
+
+### Returns:
+
+- `omegaV` : grid of allocation weights
+- `prices` : product price profile vs ω
+- `relative_prices` : price relative to baseline (Rxr = 0), when applicable
+
+--------------------------------------------------------------
+
+## Usage Guide
+
+### Step-by-Step
+
+#### 1. Install Dependencies
+    Run pip install streamlit numpy matplotlib scipy pandas.
+
+Launch Dashboard
+
+streamlit run app.py
+
+
+Select Model
+Use the sidebar navigation:
+
+Home
+
+BSHW Model
+
+Heston–HW Model
+
+SZHW Model
+
+Diversification Products
+
+Adjust Parameters
+Use sliders and numeric inputs for:
+
+Spot price, maturities
+
+Volatility parameters (σ, v₀, v̄, γ, κ)
+
+Rate parameters (λ, η)
+
+Correlation parameters (ρ, ρₓᵥ, ρₓʳ)
+
+Monte Carlo settings (number of paths/steps)
+
+Allocation ranges for diversification products
+
+Run Analysis
+Click the corresponding Run Analysis button for each model page.
+
+View Results
+Inspect:
+
+Option price vs strike plots
+
+Effective volatility / IV curves
+
+Martingale metrics
+
+Sensitivity charts and diversification profiles
 
 
 
