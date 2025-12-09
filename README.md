@@ -387,7 +387,7 @@ Feel free to open issues or submit pull requests with enhancements.
 - Verify all Python dependencies are installed and up to date.
 - Run the app with default parameters first to confirm basic functionality.
 - Inspect error messages shown in the Streamlit app and terminal.
-- Review code comments in app.py and models.py for implementation details.
+- Review code comments in `app.py` and `models.py` for implementation details.
 
 --------------------------------------------------------------
 
