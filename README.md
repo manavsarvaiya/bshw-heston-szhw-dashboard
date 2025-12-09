@@ -49,11 +49,83 @@ streamlit run app.py
 ### Core Files
 
 ```
-|  Project/
+Project/
 |- app.py
 |- models.py
- - README.me
+|- README.me
 ```
+
+### Model Classes
+
+```
+# models.py contains:
+class BaseModel()             # Shared BS + implied vol utilities
+class BSHWModel(BaseModel)    # Black–Scholes Hull–White
+class HestonHWModel(BaseModel)# Heston with Hull–White rates
+class SZHWModel(BaseModel)    # Schöbel–Zhu Hull–White
+class DiversificationModel(BaseModel)  # Stylized structured products
+```
+
+--------------------------------------------------------------
+
+## Model Specifications
+
+### BaseModel Utilities
+
+- Black–Scholes Pricing
+
+```
+BS_Call_Option_Price(CP, S0, K, σ, τ, r)
+```
+Implements standard BS call/put pricing with careful handling of input shapes.
+
+- Implied Volatility (Black-76 Style)
+```
+ImpliedVolatilityBlack76(CP, marketPrice, K, T, S0)
+```
+Uses Newton–Raphson with robust fallback to bisection search and bounded volatility.
+
+--------------------------------------------------------------
+
+## Model Specifications
+
+### BaseModel Utilities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
